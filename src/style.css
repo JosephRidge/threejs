@@ -18,7 +18,7 @@ body::-webkit-scrollbar {
 
 .webgl
 {
-    position: absolute;    
+    position: fixed;    
     top: 0;
     left: 0;
     outline: none;
@@ -90,4 +90,12 @@ canvas {
   scroll-snap-align: center;
   user-select: none;
 }   
+.partThree{
+    font-size: 3rem;
+    /* text-transform: uppercase; */
+    color: white;
+    width: 50vw;
+    line-height: 97%; 
+    margin-left: 15px;
+}
   

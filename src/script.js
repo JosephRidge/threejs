@@ -9,6 +9,7 @@ const textureLoader = new THREE.TextureLoader()
 const cross = textureLoader.load('/textures/normalMap.png')
 // Debug
 const gui = new dat.GUI()
+gui.hide()
 
 // Canvas
 const canvas = document.querySelector('canvas.webgl')
