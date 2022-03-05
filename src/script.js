@@ -82,7 +82,7 @@ onValue(devicePayload, (snapshot)=>{
         humidity:childSnapshot.val().payload_fields.humidity,
         temperature:childSnapshot.val().payload_fields.temperature,
         soil_moisture:childSnapshot.val().payload_fields.soilMoisture,
-        last_seen:Date.parse(childSnapshot.val().metadata.time),
+        // last_seen:Date.parse(childSnapshot.val().metadata.time),
     }
     console.log("Map == > ", device)
     addList(list, device)
