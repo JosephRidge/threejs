@@ -85,9 +85,8 @@ canvas {
   height: 100vh;
   display: grid;
   position: inherit;
-  z-index: 1;
-  place-items: center;
-  scroll-snap-align: center;
+  z-index: 1; 
+  scroll-snap-align: center; 
   user-select: none;
 }   
 .partThree{
@@ -97,5 +96,15 @@ canvas {
     width: 50vw;
     line-height: 97%; 
     margin-left: 15px;
+} 
+#payload{
+    font-size: 8rem;
+    width: 40vw;
+    color:white;
+    margin:10px;
 }
-  
+#title{
+    font-size: 2rem; 
+    margin:10px;
+    color: rgb(4, 48, 46)
+}
