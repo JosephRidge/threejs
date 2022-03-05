@@ -1,3 +1,6 @@
+
+@import url('https://overpass-30e2.kxcdn.com/overpass.css');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,7 +9,7 @@
 html,
 body {
   height: 100vh;
-  font-family: "Poppins";
+  font-family: "Overpass", "sans-serif";
   color: white;
 }
 body::-webkit-scrollbar {
@@ -34,7 +37,6 @@ p {
   flex-grow: 1;
   clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
 }
-
 p {
   font-size: 1.5rem;
   width: 40vw;
@@ -177,3 +179,9 @@ h5 {
 #sm{
   font-size: 1em;
   color: #eefbfb;}
+.logos{
+  background: #fff;
+  padding: 28px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px 0 rgba(0 , 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19 );
+}
