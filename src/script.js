@@ -19,32 +19,6 @@ const firebaseConfig = {
   appId: "1:815978701320:web:8fea9c91d06ad0b93867bd",
   measurementId: "G-N52RW1WDHJ"
 };
-const peopleArray = [
-    {
-    'name': 'Jerry',
-    'age': 58,
-    'gender': 'Male',
-    'accountActive': true
-  },
-  {
-    'name': 'Jessica',
-    'age': 25,
-    'gender': 'Female',
-    'accountActive': 'Processing'
-  },
-  {
-    'name': 'Lauren',
-    'age': 32,
-    'gender': 'Female',
-    'accountActive': true
-  },
-  {
-    'name': 'Fabian',
-    'age': 28,
-    'gender': 'Male',
-    'accountActive': false
-  }
-]
 
 const list = document.querySelector('.list')
 
@@ -80,11 +54,6 @@ const addList = ( element, deviceObj) => {
     });
 }
 
-
-
-const filteredArray = peopleArray.filter(person => person.name.match(/^J/g) )
-
-// addList(peopleArray, list)
 
 /// FIREBASE SEction
 const app = initializeApp(firebaseConfig);
