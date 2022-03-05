@@ -1,9 +1,52 @@
 import './style.css'
 import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
-import * as dat from 'dat.gui'
+import * as dat from 'dat.gui' 
+
+import { initializeApp } from "firebase/app";  
+import { getAnalytics } from "firebase/analytics"; 
+
+import { getDatabase, ref, set, onValue } from 'firebase/database';
 
 
+const firebaseConfig = {
+  apiKey: "AIzaSyDCHFx4vmcS8ap50304OLO_gtN2F4ig49E",
+  authDomain: "iotlab2021dev1.firebaseapp.com",
+  databaseURL: "https://iotlab2021dev1-default-rtdb.firebaseio.com",
+  projectId: "iotlab2021dev1",
+  storageBucket: "iotlab2021dev1.appspot.com",
+  messagingSenderId: "815978701320",
+  appId: "1:815978701320:web:8fea9c91d06ad0b93867bd",
+  measurementId: "G-N52RW1WDHJ"
+};
+/// FIREBASE SEction
+const app = initializeApp(firebaseConfig);
+const database = getDatabase(app)
+getPayload()
+
+
+// const dbRef = firebase.database().ref();
+// const usersRef = dbRef.child('data')
+
+async function getPayload(){
+const devicePayload = ref(database, 'data') 
+console.log('device', devicePayload)
+onValue(devicePayload, (snapshot)=>{
+    const data = snapshot.val();
+    const dataKey = snapshot.toJSON()
+    // console.log('== >EKY  : ', snapshot.key)
+
+    snapshot.forEach(function (childSnapshot){
+    const value = snapshot.val(childSnapshot.key);
+    // console.log('== > KEY : : ', value)
+    console.log(" ADTA ---- > ", childSnapshot.val().payload_fields)
+    document.getElementById('template').innerHTML = childSnapshot.val().payload_fields.humidity 
+    })
+})
+}
+
+
+ ///THREE JS SECTION
 //Textureloader 
 const textureLoader = new THREE.TextureLoader()
 const cross = textureLoader.load('/textures/normalMap.png')
@@ -131,6 +174,7 @@ const tick = () =>
     const elapsedTime = clock.getElapsedTime()
     //particlesMesh.rotation.x = mouseX  *(elapsedTime*0.0008)
     particlesMesh.rotation.y = -.1 *(elapsedTime*0.0008)
+    particlesMesh.rotation.x = mouseX  *(elapsedTime*0.00008)
 
     // Update objects
      sphere.rotation.y = .5 * elapsedTime
@@ -138,12 +182,7 @@ const tick = () =>
     particlesMesh.rotation.x = mouseX  *(elapsedTime*0.00008)
     particlesMesh.rotation.y = mouseY  *(elapsedTime*0.00008)
   
-     }
-    // let position += y ;
-    //  camera.position.y = position
-    
-    // Update Orbital Controls
-    // controls.update()
+     } 
 
     // Render
     renderer.render(scene, camera)
