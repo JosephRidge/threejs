@@ -116,7 +116,7 @@ h5 {
   font-size: 1.5em;
 }
 .list:empty::before {
-  content: "Empty ☹️";
+  content: "Loading Devices.. ☹️";
   color: #fff;
   font-size: 3em;
   height: 400px;
@@ -129,17 +129,51 @@ h5 {
   background: #12232e;
   padding: 35px;
   border-radius: 12px;
-  border: 1px solid #2d4454;
+  border: 1px solid #2d4454;  
+  float: left; 
+  width: 100%;
+  max-height: 500px;
+  overflow: scroll;
+  overflow-x: hidden;
+  box-shadow: 0 4px 8px 0 rgba(0 , 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19 );
+  /* display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  flex-flow: wrap column; */
+}
+.list::-webkit-scrollbar {
+  display: none;
 }
 .list li {
   list-style: none;
-  border-bottom: 1px solid #203647;
-  margin: 25px 0;
+  border-bottom: 1px solid #203647; 
   padding-bottom: 25px;
   font-size: 4em;
   color: #eefbfb;
+  margin: 10px;
+  place-items: center;
 }
 .list li:last-child {
   border: none;
-  padding: 0;
+  padding: 10;
+  margin: 10px;
 }
+
+#deviceID{
+  font-size: 1.5em;
+  color: #eefbfb;
+}
+#temp{
+  font-size: 1em;
+  color: #eefbfb;
+}
+#hum{
+  font-size: 1em;
+  color: #eefbfb;
+}
+#time{
+  font-size: 1em;
+  color: #eefbfb;}
+#sm{
+  font-size: 1em;
+  color: #eefbfb;}

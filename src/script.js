@@ -48,10 +48,34 @@ const peopleArray = [
 
 const list = document.querySelector('.list')
 
-const addList = (array, element) => {
+const addList = ( element, deviceObj) => {
+    let array = []
+    array.push(deviceObj)
+    console.log("== > ",array)
     array.forEach(item => {
+
+        const id = document.createElement('div')
+        id.textContent = item.id
+        id.setAttribute('id','deviceID')
+        element.appendChild(id)
         const li = document.createElement('li')
-        li.textContent = item.name
+        // const tempString = document.createElement('li')
+        const temp =document.createElement('div')
+        temp.textContent  = "Temperture : "+item.temperature+" °C"
+        temp.setAttribute('id','temp')
+        element.appendChild(temp)
+        const hum =document.createElement('div')
+        hum.textContent = "Humidity : "+item.humidity + " %"
+        hum.setAttribute('id','hum')
+        element.appendChild(hum)
+        const timestamp =document.createElement('div')
+        timestamp.textContent = item.last_seen
+        timestamp.setAttribute('id','time')
+        element.appendChild(timestamp)
+        const sm =document.createElement('div')
+        sm.textContent = item.soil_moisture
+        sm.setAttribute('id','sm')
+        element.appendChild(sm) 
         element.appendChild(li)
     });
 }
@@ -60,7 +84,7 @@ const addList = (array, element) => {
 
 const filteredArray = peopleArray.filter(person => person.name.match(/^J/g) )
 
-addList(peopleArray, list)
+// addList(peopleArray, list)
 
 /// FIREBASE SEction
 const app = initializeApp(firebaseConfig);
@@ -74,18 +98,33 @@ getPayload()
 async function getPayload(){
 const devicePayload = ref(database, 'data') 
 console.log('device', devicePayload)
+
+let device 
 onValue(devicePayload, (snapshot)=>{
     const data = snapshot.val();
     const dataKey = snapshot.toJSON()
-    // console.log('== >EKY  : ', snapshot.key)
+    console.log('== >EKY  : ', snapshot.key)
 
     snapshot.forEach(function (childSnapshot){
     const value = snapshot.val(childSnapshot.key);
     // console.log('== > KEY : : ', value)
-    console.log(" ADTA ---- > ", childSnapshot.val().payload_fields)
-    document.getElementById('template').innerHTML = childSnapshot.val().payload_fields.humidity 
-    })
+     device = {
+        id: childSnapshot.val().dev_id,
+        humidity:childSnapshot.val().payload_fields.humidity,
+        temperature:childSnapshot.val().payload_fields.temperature,
+        soil_moisture:childSnapshot.val().payload_fields.soilMoisture,
+        last_seen:childSnapshot.val().metadata.time,
+    }
+    console.log("Map == > ", device)
+    addList(list, device)
+    // devicesArray.appendChild(device) 
+    // console.log(" ADTA ---- > ", childSnapshot.val().payload_fields)
+    // document.getElementById('template').innerHTML = childSnapshot.val().payload_fields.humidity 
+    // return device    
+}) 
 })
+
+
 }
 
 
