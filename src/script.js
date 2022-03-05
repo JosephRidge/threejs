@@ -69,7 +69,7 @@ const addList = ( element, deviceObj) => {
         hum.setAttribute('id','hum')
         element.appendChild(hum)
         const timestamp =document.createElement('div')
-        timestamp.textContent = item.last_seen
+        timestamp.textContent = (item.last_seen).toLocaleString()
         timestamp.setAttribute('id','time')
         element.appendChild(timestamp)
         const sm =document.createElement('div')
@@ -113,7 +113,7 @@ onValue(devicePayload, (snapshot)=>{
         humidity:childSnapshot.val().payload_fields.humidity,
         temperature:childSnapshot.val().payload_fields.temperature,
         soil_moisture:childSnapshot.val().payload_fields.soilMoisture,
-        last_seen:childSnapshot.val().metadata.time,
+        last_seen:Date.parse(childSnapshot.val().metadata.time),
     }
     console.log("Map == > ", device)
     addList(list, device)

@@ -168,17 +168,21 @@ h5 {
 #temp{
   font-size: 1em;
   color: #eefbfb;
+  margin: 5px;
 }
 #hum{
   font-size: 1em;
   color: #eefbfb;
+  margin: 7px;
 }
 #time{
   font-size: 1em;
-  color: #eefbfb;}
+  color: #eefbfb;
+  margin: 7px;}
 #sm{
   font-size: 1em;
-  color: #eefbfb;}
+  color: #eefbfb;
+  margin: 7px;}
 .logos{
   background: #fff;
   padding: 28px;
